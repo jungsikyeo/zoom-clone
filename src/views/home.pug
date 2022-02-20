@@ -1,25 +1,57 @@
 doctype html
-html(lang="en")
+html(lang="ko")
   head
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title ZoomClone
-    link(rel="stylesheet", href="https://unpkg.com/mvp.css")
-  body 
-    header 
-      h1 ZoomClone
-    main 
-      div#welcome
+    title Fake Zoom
+    link(rel="stylesheet", href="/public/css/reset.css")
+    link(rel="stylesheet", href="/public/css/home.css")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css")
+  body
+    div#welcome
+      header 
+        h1 Fake Zoom
+      main 
         form 
-          input(placeholder="room name", required, type="text")
-          button Enter room
-      div#call
-        div#myStream
-          video#myFace(autoplay, playsinline, width="400", height="400")
-          button#mute Mute
-          button#camera Turn Camera Off
-          select#cameras
-          video#peerFace(autoplay, playsinline, width="400", height="400")
+          div(class="nickname")
+            span 이름 :
+            input#nickname(placeholder="nickname", required, type="text")
+          div(class="room")
+            span 회의 ID :
+            input#room(placeholder="room name", required, type="text")
+          button(class="enter_room") 회의 참가
+    div#call
+      div#myStream
+        div#myFaceBox
+          video#myFace(autoplay, playsinline)   
+        div#peerFaceBox
+          video#peerFace(autoplay, playsinline)
+        div#buttonBox
+          div#muteBox
+            div#muteIcon
+            div#muteText
+          div#cameraBox
+            div#cameraIcon
+            div#cameraText
+          div#settingBox            
+            div#settingIcon
+            div#settingText
+            div#layerBox
+              select#cameras
+      div#chatBox
+        div#users
+          div#usersTitleBox
+            h1
+          div#usersListBox
+            ul          
+        div#chats
+          div#chatsTitleBox
+            h1 채팅
+          div#chatsListBox
+            ul#chatsList
+            div#messageBox
+              form
+                input#messageInput(placeholder="여기에 메시지 입력...", required, type="text")
     script(src="/socket.io/socket.io.js")
     script(src="/public/js/app.js")
